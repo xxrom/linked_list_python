@@ -7,7 +7,7 @@ class Node(object):
 class LinkedList(object):
 
   def __init__(self):
-    self.head = Node
+    self.head = None
     self.size = 0
 
 
@@ -21,7 +21,6 @@ class LinkedList(object):
     else:
       newNode.nextNode = self.head # если не пуст
       self.head =   newNode # [N] -> [H] -> NULL
-
 
   def remove(self, data):
     if self.head is None:
@@ -42,7 +41,7 @@ class LinkedList(object):
 
 
   # O(1)
-  def size(self):
+  def size1(self):
     return self.size
 
   # O(N) not so good !!!
@@ -62,7 +61,7 @@ class LinkedList(object):
     newNode = Node(data)
 
     lastNode = self.head # доходим до последнего элемента перед NULL
-    while lastNode.nextNode in not None:
+    while lastNode.nextNode is not None:
       lastNode = lastNode.nextNode
 
     lastNode.nextNode = newNode # переприсваиваем nextNode на newNode
@@ -74,3 +73,25 @@ class LinkedList(object):
     while actualNode is not None:
       print("%d " % actualNode.data)
       actualNode = actualNode.nextNode
+
+
+
+linkedList = LinkedList()
+
+linkedList.insertStart(12)
+linkedList.insertStart(122)
+linkedList.insertStart(3)
+linkedList.insertEnd(31)
+
+linkedList.traverseList()
+print("size1 %i " % linkedList.size1())
+print("size2 %d " % linkedList.size2())
+
+linkedList.remove(3)
+linkedList.remove(31)
+linkedList.traverseList()
+print("size1 %i " % linkedList.size1())
+linkedList.remove(122)
+linkedList.remove(12)
+linkedList.traverseList()
+print("size1 %i " % linkedList.size1())
