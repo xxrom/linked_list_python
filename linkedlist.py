@@ -10,6 +10,7 @@ class LinkedList(object):
     self.head = Node
     self.size = 0
 
+
   # O(1) !!!
   def insertStart(self, data):
     self.size = self.size + 1
@@ -20,6 +21,25 @@ class LinkedList(object):
     else:
       newNode.nextNode = self.head # если не пуст
       self.head =   newNode # [N] -> [H] -> NULL
+
+
+  def remove(self, data):
+    if self.head is None:
+      return
+
+    self.size = self.size - 1
+
+    currentNode = self.head
+    previousNode = None
+    while currentNode.data != data:
+      previousNode = currentNode
+      currentNode = currentNode.nextNode
+
+    if previousNode is None: # если сразу нашли элемент первый
+      self.head = currentNode.nextNode
+    else: # если не первый эелемент нашли
+      previousNode.nextNode = currentNode.nextNode
+
 
   # O(1)
   def size(self):
